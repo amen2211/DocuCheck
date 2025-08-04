@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="fr" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DocuCheck - Générateur de documents</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/a2e0e6d550.js" crossorigin="anonymous"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Cairo', sans-serif;
+      background: linear-gradient(to bottom right, #f5f7fa, #c3cfe2);
+      color: #333;
+    }
+    header {
+      background-color: #1f2937;
+      color: white;
+      padding: 2rem;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+    header p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 3rem auto;
+      padding: 0 1rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+    .card {
+      background-color: white;
+      border-radius: 1rem;
+      padding: 2rem;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-align: center;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+    }
+    .card i {
+      font-size: 2.5rem;
+      color: #2563eb;
+      margin-bottom: 1rem;
+    }
+    .card h3 {
+      margin: 0.5rem 0;
+      font-size: 1.3rem;
+    }
+    .card a {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.5rem 1.2rem;
+      background-color: #2563eb;
+      color: white;
+      border-radius: 999px;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+    .card a:hover {
+      background-color: #1e40af;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background-color: #1f2937;
+      color: white;
+      margin-top: 4rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>DocuCheck</h1>
+    <p>Créez facilement et professionnellement vos documents administratifs et juridiques</p>
+  </header>
+
+  <main class="container">
+    <div class="card">
+      <i class="fas fa-briefcase"></i>
+      <h3>Demande d’emploi</h3>
+      <a href="job-request.html">Créer le document</a>
+    </div>
+    <div class="card">
+      <i class="fas fa-sign-out-alt"></i>
+      <h3>Lettre de démission</h3>
+      <a href="resignation.html">Créer le document</a>
+    </div>
+    <div class="card">
+      <i class="fas fa-user-shield"></i>
+      <h3>Demande d’autorisation</h3>
+      <a href="authorization.html">Créer le document</a>
+    </div>
+    <div class="card">
+      <i class="fas fa-file-signature"></i>
+      <h3>Engagement personnel</h3>
+      <a href="commitment.html">Créer le document</a>
+    </div>
+    <div class="card">
+      <i class="fas fa-school"></i>
+      <h3>Demande d’inscription</h3>
+      <a href="registration.html">Créer le document</a>
+    </div>
+    <div class="card">
+      <i class="fas fa-certificate"></i>
+      <h3>Attestation de présence</h3>
+      <a href="attendance.html">Créer le document</a>
+    </div>
+  </main>
+
+  <footer>
+    &copy; 2025 DocuCheck - Tous droits réservés
+  </footer>
+</body>
+</html>

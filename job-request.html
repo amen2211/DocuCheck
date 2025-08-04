@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Demande d'emploi - PDF avec pdfmake</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f4f8;
+      margin: 0;
+      padding: 2rem;
+      color: #333;
+    }
+    h1 {
+      text-align: center;
+      color: #1f2937;
+    }
+    form {
+      background: white;
+      max-width: 600px;
+      margin: 2rem auto;
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    }
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 0.8rem;
+      margin-bottom: 1.5rem;
+      border: 1px solid #ccc;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+    }
+    button {
+      background-color: #2563eb;
+      color: white;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #1e40af;
+    }
+  </style>
+</head>
+<body>
+  <h1>Demande d'emploi</h1>
+  <form id="jobForm">
+    <label for="name">Nom complet :</label>
+    <input type="text" id="name" required />
+
+    <label for="idNumber">Numéro d'identification :</label>
+    <input type="text" id="idNumber" required />
+
+    <label for="phone">Téléphone :</label>
+    <input type="tel" id="phone" required />
+
+    <label for="email">Email :</label>
+    <input type="email" id="email" required />
+
+    <label for="address">Adresse :</label>
+    <input type="text" id="address" required />
+
+    <label for="date">Date :</label>
+    <input type="date" id="date" required />
+
+    <label for="institution">Nom de l'institution :</label>
+    <input type="text" id="institution" required />
+
+    <label for="content">Texte de la demande :</label>
+    <textarea id="content" rows="5" required>Je vous adresse cette demande dans l’espoir d’intégrer votre institution respectable, en espérant mériter votre confiance.</textarea>
+
+    <button type="submit">📥 Générer PDF</button>
+  </form>
+
+  <script>
+    document.getElementById('jobForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById('name').value;
+      const idNumber = document.getElementById('idNumber').value;
+      const phone = document.getElementById('phone').value;
+      const email = document.getElementById('email').value;
+      const address = document.getElementById('address').value;
+      const date = document.getElementById('date').value;
+      const institution = document.getElementById('institution').value;
+      const content = document.getElementById('content').value;
+
+      const docDefinition = {
+        content: [
+          { text: 'Demande d\'emploi', style: 'header', alignment: 'center' },
+          { text: `Nom complet: ${name}`, margin: [0, 20, 0, 5] },
+          { text: `Numéro d'identification: ${idNumber}`, margin: [0, 0, 0, 5] },
+          { text: `Téléphone: ${phone}`, margin: [0, 0, 0, 5] },
+          { text: `Email: ${email}`, margin: [0, 0, 0, 5] },
+          { text: `Adresse: ${address}`, margin: [0, 0, 0, 5] },
+          { text: `Date: ${date}`, margin: [0, 0, 0, 15] },
+          { text: `À l'attention de: ${institution}`, margin: [0, 0, 0, 20] },
+          { text: content, margin: [0, 0, 0, 20] },
+          { text: 'Avec tout mon respect et mes salutations distinguées.', margin: [0, 30, 0, 5] },
+          { text: `Signature: ${name}` }
+        ],
+        styles: {
+          header: { fontSize: 18, bold: true }
+        }
+      };
+
+      pdfMake.createPdf(docDefinition).download('Demande_emploi.pdf');
+    });
+  </script>
+</body>
+</html>

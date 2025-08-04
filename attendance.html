@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Attestation de présence - DocuCheck</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <style>
+    body {
+      font-family: 'Cairo', sans-serif;
+      background: #f0f4f8;
+      margin: 0;
+      padding: 2rem;
+      color: #333;
+    }
+    h1 {
+      text-align: center;
+      color: #1f2937;
+    }
+    form {
+      background: white;
+      max-width: 600px;
+      margin: 2rem auto;
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    }
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+    }
+    input {
+      width: 100%;
+      padding: 0.8rem;
+      margin-bottom: 1.5rem;
+      border: 1px solid #ccc;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+    }
+    button {
+      background-color: #2563eb;
+      color: white;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #1e40af;
+    }
+  </style>
+</head>
+<body>
+  <h1>Attestation de présence</h1>
+  <form id="attendanceForm">
+    <label for="name">Nom du participant :</label>
+    <input type="text" id="name" required />
+
+    <label for="date">Date de présence :</label>
+    <input type="date" id="date" required />
+
+    <label for="event">Nom de l'événement :</label>
+    <input type="text" id="event" required />
+
+    <button type="submit">📥 Générer PDF</button>
+  </form>
+
+  <script>
+    document.getElementById('attendanceForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+
+      const name = document.getElementById('name').value;
+      const date = document.getElementById('date').value;
+      const event = document.getElementById('event').value;
+
+      doc.setFont('Arial');
+      doc.setFontSize(16);
+      let y = 40;
+
+      doc.text(`Attestation de présence`, 105, 20, { align: 'center' }); 
+      doc.setFontSize(14);
+
+      doc.text(`Nous certifions que M./Mme ${name}`, 20, y); y += 15;
+      doc.text(`a participé à l'événement "${event}" le ${date}.`, 20, y); y += 20;
+      doc.text(`Signé par la personne responsable.`, 20, y); y += 30;
+
+      doc.text(`Signature: ______________________`, 20, y);
+
+      doc.save('Attestation_de_presence.pdf');
+    });
+  </script>
+</body>
+</html>
